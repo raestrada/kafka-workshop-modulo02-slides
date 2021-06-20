@@ -296,30 +296,6 @@
 							consumidor leyendo una partición, va a leer lso eventos en exactamente el mismo orden.
 						</script>
 					</section>
-					<section data-markdown>
-						<script type="text/template">
-							![kafka-topic-parition](imgs/kafka-topic-parition.png)
-						</script>
-					</section>
-					<section data-markdown>
-						<script type="text/template">
-							Cada partición es un archivo de log simple escrito con **"append"**
-
-							![kafka-parittion](imgs/kafka-partition.png)
-						</script>
-					</section>
-					<section data-markdown>
-						<script type="text/template">
-							A cada evento se le asigna un número correlativo dentro de la partición único e inmutable.
-							
-							![kafka-offset](imgs/kafka-offsets.png)
-						</script>
-					</section>
-					<section data-markdown>
-						<script type="text/template">
-							> Kafka no garantiza orden y unicidad entre particiones.
-						</script>
-					</section>
 				</section>
 				<section>
 					<section data-markdown>
@@ -330,32 +306,6 @@
 							puede ser replicado, incluso a través de regiones y data-centers (Confluent).
 							La selección mas común de replicas es 3, y significa que Kafka garantiza que 3
 							brokers independientes tiene copia de la partición. 
-						</script>
-					</section>
-					<section data-markdown>
-						<script type="text/template">
-							### Líder
-
-							> Kafka genera un líder de partición usando consenso distribuido. EL resto de los brokers
-							actúan como seguidores.
-						</script>
-					</section>
-					<section data-markdown>
-						<script type="text/template">
-							### ACK
-
-							- ack=0: Kafka recibe el mensaje y no espera confirmación
-							- ack=1: Al menos el leader a confirmado el evento
-							- ack=2: Kafka considera que un evento está confirmado cuando todas las réplicas confirman
-							el almacenamiento del evento.
-						</script>
-					</section>
-					<section data-markdown>
-						<script type="text/template">
-							### In Sync Replica (ISR)
-
-							> Balance entre seguridad y disponibilidad/latencia. Define el número mínimo de seguodores
-							que deben estar sincronizados con el líder. 
 						</script>
 					</section>
 				</section>
