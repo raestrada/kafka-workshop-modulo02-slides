@@ -309,6 +309,72 @@
 						</script>
 					</section>
 				</section>
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							### Consumer Groups
+
+							Un grupo de consumidores es un conjunto de consumidores que cooperan para consumir 
+							datos de algunos tópicos. Las particiones de todos los tópicos
+							se dividen entre los consumidores del grupo. A medida que llegan nuevos miembros
+							del grupo y se van los miembros antiguos, las particiones se reasignan para que
+							cada miembro reciba una parte proporcional de las particiones. Esto se conoce como
+							re-equilibrio del grupo.
+						</script>
+					</section>
+				    <section data-markdown>
+						<script type="text/template">
+							### Consumer Groups
+
+							> Una partición nuca se asigna a más de un cliente para garantizar la entrega en orden.
+							Esto quiere decir que para lograr la paralelismo desead, la cantidad de particiones debe
+							ser al menos igual a los clientes.
+
+							Un cliente si puede recibir más de una partición.
+						</script>
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							### Distribuciones de Kafka
+
+							Administrar e instalar Kafka en producción es complejo. Para facilitar su uso,
+							existe distribuciones:
+
+							- [Strimzi](https://strimzi.io/)
+							- [Confluent](https://www.confluent.io/)
+							- [Cloudera](https://www.cloudera.com/products/open-source/apache-hadoop/apache-kafka.html)
+							- [Openshift Streams](https://www.redhat.com/en/blog/introducing-red-hat-openshift-streams-apache-kafka)				
+
+						</script>
+					</section>
+				    <section data-markdown>
+						<script type="text/template">
+							### Kafka como servicio
+
+							- [Confluent Cloud](https://www.confluent.io/confluent-cloud)
+							- [Heroku Kafka](https://www.heroku.com/kafka)
+							- [Azure Event Hub]()
+							- [Ubuntu](https://ubuntu.com/managed/kafka)
+							- [Huawei Cloud DMS](https://www.huaweicloud.com/intl/en-us/product/dmskafka.html)
+							- [Aiven](https://aiven.io/kafka)
+						</script>
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							### En el workshop vamos a usar Strimzi
+
+							- Cloud Native
+							- Kubernetes Native
+							- Seguro por defecto
+							- Configuración productiva incluso para desarrollo
+
+						</script>
+					</section>
+				</section>
 			</div>
 		</div>
 
