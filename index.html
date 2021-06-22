@@ -394,6 +394,164 @@
 						</script>
 					</section>
 				</section>
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							### Problemas de recursos en equipo de trabajo
+							Una recomendación es trabajar en Linux y en caso de no tener recursos suficientes, se puede crear una cuenta
+gratis por USD$100 en [Digital Ocean's](https://try.digitalocean.com/freetrialoffer) o en [Linode](https://www.linode.com/lp/free-credit-100) y disfrutar de una máquina virtual Ubuntu de 4 cores
+y 8GBG RAM. Para trabajo local, se puede montar la carpeta de trabajo de la VM usando [SSHFS](https://www.digitalocean.com/community/tutorials/how-to-use-sshfs-to-mount-remote-file-systems-over-ssh)
+
+						</script>
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							### Crear cluster Kubernetes
+
+							1. Actualizar apt-get
+
+							```bash 
+							$ sudo apt-get update
+							```
+
+							2. Instalar dependencias de Docker 
+
+							```bash 
+							$ sudo apt-get install     apt-transport-https     ca-certificates     curl     gnupg     lsb-release
+							```
+
+							3. Registrar repositorio de Docker
+
+							```bash 
+							$ echo   "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+							$(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+							```
+						</script>
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							### Crear cluster Kubernetes
+
+							4. Actualizar apt-get
+
+							```bash 
+							$ sudo apt-get update
+							```
+
+							5. Instalar Docker CE
+
+							```bash 
+							$ sudo apt-get install docker-ce docker-ce-cli containerd.io
+							```
+						</script>
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							### Crear cluster Kubernetes
+
+							4. Actualizar apt-get
+
+							```bash 
+							$ sudo apt-get update
+							```
+
+							5. Instalar Docker CE
+
+							```bash 
+							$ sudo apt-get install docker-ce docker-ce-cli containerd.io
+							```
+						</script>
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							### Crear cluster Kubernetes
+
+							6. Instalar kind
+   
+							```
+							$ curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64
+							$ chmod +x ./kind
+							$ sudo mv ./kind /usr/bin/kind
+							```
+
+							7. Crear cluster k8s
+							
+							```bash
+							kind create cluster --name strimzi-lab
+							```
+						</script>
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							### Crear cluster Kubernetes
+
+							8. Instalar kubectl
+
+							```bash
+							$ sudo apt-get install -y apt-transport-https ca-certificates curl
+							$ sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+							$ echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+							$ sudo apt-get update
+							$ sudo apt-get install -y kubectl
+							```
+						</script>
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							### Crear cluster Kubernetes
+
+							9. Instalar [krew](https://krew.sigs.k8s.io/) / **NO USAR EN PRODUCCION**/
+
+							```bash
+							$ (
+							set -x; cd "$(mktemp -d)" &&
+							OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
+							ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" &&
+							curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/krew.tar.gz" &&
+							tar zxvf krew.tar.gz &&
+							KREW=./krew-"${OS}_${ARCH}" &&
+							"$KREW" install krew
+							)
+
+							$ echo 'export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"' > ~/.bashrc
+							$ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+							```
+						</script>
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							### Crear cluster Kubernetes
+
+							9. Instalar kubectx y kubens
+
+							```bash
+							$ kubectl krew install ctx
+							$ kubectl krew install ns
+							```
+
+							10. Instalar [Skaffold](https://skaffold.dev/)
+
+							```bash
+							$ curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 && \
+							$ sudo install skaffold /usr/local/bin/
+							```
+						</script>
+					</section>
+				</section>
 			</div>
 		</div>
 
